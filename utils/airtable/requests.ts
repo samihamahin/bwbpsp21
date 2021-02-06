@@ -88,7 +88,7 @@ export async function getUser(user: UserRecord, cached = false): Promise<UserRec
     };
   
   if (user != null){
-    if(testUser.uname == user.uname){
+    if(testUser.uname == user.uname && testUser.password == user.password){
       return testUser;
     }
   }else{
