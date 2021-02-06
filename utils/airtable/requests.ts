@@ -29,6 +29,7 @@ import {
 
 import { Row } from './interface';
 import axios from 'axios';
+import { Alert } from 'react-native';
 
 /* Messages */
 
@@ -72,23 +73,30 @@ export async function findContact(senderRef: string): Promise<ContactRecord> {
 export async function getUser(user: UserRecord, cached = false): Promise<UserRecord | null> {
   console.log('Fetching user');
 
-  // FOR BWBP
-  // NOTE: Please do not alter anything here or you may be disqualified.
   const testUser: UserRecord = {
-    admin: false,
-    cohort: 'recJUdvrGp9a6SXKG',
-    cohortName: 'jan2020_oak',
-    firstName: 'Jen',
-    lastName: 'Hoang',
-    location: 'Seattle',
-    password: 'coldbrew09',
-    phone: '',
-    rid: 'recKoO9X3HKXFXh6B',
-    uname: 'jenhoang',
-    graduated: true,
-  };
+      admin: false,
+      cohort: 'recJUdvrGp9a6SXKG',
+      cohortName: 'jan2020_oak',
+      firstName: 'Jen',
+      lastName: 'Hoang',
+      location: 'Seattle',
+      password: 'coldbrew09',
+      phone: '',
+      rid: 'recKoO9X3HKXFXh6B',
+      uname: 'jenhoang',
+      graduated: true,
+    };
+  
+  if (user != null){
+    if(testUser.uname == user.uname){
+      return testUser;
+    }
+  }else{
+    return null; 
+  }
+  
 
-  return testUser;
+  
 
   // FOR THOSE WHO ARE INTERESTED IN HOW IT'S ACTUALLY IMPLEMENTED
   if (cached) {

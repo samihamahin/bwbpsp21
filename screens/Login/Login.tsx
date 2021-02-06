@@ -6,10 +6,13 @@ import { getUser } from '@utils/airtable/requests';
 import { UserRecord } from '@utils/airtable/interface';
 import { GlobalContext } from '@components/ContextProvider';
 import { UserMock } from '@utils/airtable/mocks';
+//import { ReactDOM } from "react-dom"
 
 interface LoginScreenState {
   user: UserRecord;
+
 }
+//maybe need to make LoginScreenComponents js file 
 
 interface LoginScreenProps {
   navigation: StackNavigationProp;
@@ -34,20 +37,26 @@ export default class LoginScreen extends React.Component<LoginScreenProps, Login
     super(props);
     this.state = {
       user: { ...UserMock },
+      //need to add username and password to this.state? 
+
     };
   }
 
   async login(): Promise<void> {
+
+    console.log(this.state.user)
     const user = await getUser(this.state.user);
     if (user) {
       await this.context.setUser(user);
       this.props.navigation.navigate('App');
-    } else {
-      alert('Incorrect username or password.');
+    }
+    else if (user == null){ 
+      alert('incorrect username or password');
     }
   }
 
   render() {
+     
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
         <ScrollView style={{ flex: 1 }}>
@@ -86,5 +95,8 @@ export default class LoginScreen extends React.Component<LoginScreenProps, Login
         </ScrollView>
       </KeyboardAvoidingView>
     );
+    
   }
+ 
+
 }
