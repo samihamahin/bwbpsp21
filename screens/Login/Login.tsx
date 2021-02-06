@@ -6,14 +6,11 @@ import { getUser } from '@utils/airtable/requests';
 import { UserRecord } from '@utils/airtable/interface';
 import { GlobalContext } from '@components/ContextProvider';
 import { UserMock } from '@utils/airtable/mocks';
-//import { ReactDOM } from "react-dom"
 
 interface LoginScreenState {
   user: UserRecord;
 
 }
-//maybe need to make LoginScreenComponents js file 
-
 interface LoginScreenProps {
   navigation: StackNavigationProp;
 }
@@ -37,8 +34,6 @@ export default class LoginScreen extends React.Component<LoginScreenProps, Login
     super(props);
     this.state = {
       user: { ...UserMock },
-      //need to add username and password to this.state? 
-
     };
   }
 
